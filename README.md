@@ -1,1 +1,2 @@
-# ShahMusaev.github.io
+# n-slit-diffraction
+Fraunhofer diffraction
