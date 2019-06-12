@@ -37,6 +37,8 @@ function drowChart() {
                         labelString: "Интенсивность (I)"
                     },
                     ticks: {
+                        fontColor: "black",
+                        fontStyle: 'bold',
                         callback: function (value, index, values) {
                             return (100 * (value)).toFixed(2);
                         }
@@ -55,10 +57,25 @@ function drowChart() {
                     display: true,
                     ticks: {
                         beginAtZero: true,
+                        fontSize: 12,
+                        fontColor: "black",
+                        fontStyle: 'bold',
+
+                        maxTicksLimit: 9,
                         callback: function (value, index, values) {
-                            if ((index % 4) === 0) {return value;}
+                            if( value === -150 || value === -116.6 || value === -83.2 || value === -49.8 || value === -16.4){
+                                return value;
+                            } else if (value === 17){
+                                return 16.4;
+                            }else if (value === 50.4){
+                                return 49.8;
+                            } else if (value === 83.8){
+                                return 83.2;
+                            } else if (value === 117.2){
+                                return 116.6;
+                            }
                             return '';
-                        }
+                        },
                     }
                 }]
             }
@@ -77,10 +94,18 @@ function updateChart() {
     let labels = [];
     let intensities = [];
 
+    function sinfi(x) {
+        return x/Math.sqrt((Math.pow(x, 2) + Math.pow(L, 2)))
+    }
+
     function intensityFunction(x) {
+       if(x === 0){
+           x = 0.000000001;
+       }
+
         let e = 1e-6;
-        let u = (Math.PI * b * x) / (wavelength * e * L);
-        let q = (Math.PI * d * x) / (wavelength * e * L);
+        let u = (Math.PI * b * sinfi(x)) / (wavelength * e);
+        let q = (Math.PI * d * sinfi(x)) / (wavelength * e );
         let res = Math.pow(b, 2) * Math.pow(Math.sin(u) / u, 2) * Math.pow(Math.sin(N * q) / Math.sin(q), 2)
         intensities.push(res)
     }
@@ -89,16 +114,15 @@ function updateChart() {
 
 
     for (let x = -3/2 * 1e2; x <=3/2 * 1e2 ; x += 0.1  ) {
-
-        labels.push(x.toFixed(2));
+        x = +x.toFixed(10);
+        labels.push(+x.toFixed(2));
         intensityFunction(x);
     }
     // for (let x = -3/2 * 1e2; x <= 3/2 * 1e2; x+=3/510 ) {
     //     labels.push(x.toFixed(2));
     //     intensityFunction(x);
     // }
-    if(d > b) {
-
+    if(d > b || N === 1) {
         myChart.data.labels = labels;
         myChart.data.datasets[0].data = intensities;
         drawMonoInterfPicture(wavelength, d * 100, b * 100, N, L);

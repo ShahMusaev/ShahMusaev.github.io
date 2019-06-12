@@ -43,8 +43,15 @@ function drawMultiInterfPicture(wavelengthLowerBorder, wavelengthUpperBorder, d,
   const yStep = width / labels.length;
   let al, max =0;
 
-
-
+  labels.forEach(function(x, index){
+    for (let i = wavelengthLowerBorder; i <= wavelengthUpperBorder; i += wavelengthDelta) {
+      al = alpha(x, i);
+      if( al > max) {
+        max = al;
+      }
+    }
+  });
+  // alert(max);
 
   labels.forEach(function(x, index) {
     const yCoord = index * yStep;
@@ -55,11 +62,11 @@ function drawMultiInterfPicture(wavelengthLowerBorder, wavelengthUpperBorder, d,
     for (let i = wavelengthLowerBorder; i <= wavelengthUpperBorder; i += wavelengthDelta) {
 
       let alp = alpha(x, i) ;
-      if(alp > 1){
-        alp = 1;
-      }
+      // if(alp > 1){
+      //   alp = 1;
+      // }
       const currentColor = Math.nmToRGB(i);
-      const currentAlpha = alp ;
+      const currentAlpha = alp / max;
 
       const sourceRGBAColor = rgbaFromRGB(currentColor, currentAlpha);
 

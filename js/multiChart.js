@@ -38,6 +38,8 @@ function drowChart() {
                         labelString: "Интенсивность (I)"
                     },
                     ticks: {
+                        fontColor: "black",
+                        fontStyle: 'bold',
                         callback: function (value, index, values) {
                             return (100 * (value)).toFixed(2);
                         }
@@ -55,11 +57,25 @@ function drowChart() {
                     },
                     display: true,
                     ticks: {
+                        fontSize: 12,
+                        fontColor: "black",
+                        fontStyle: 'bold',
                         beginAtZero: true,
+                        maxTicksLimit: 9,
                         callback: function (value, index, values) {
-                            if ((index % 4) === 0) {return value;}
+                            if( value === -150 || value === -116.6 || value === -83.2 || value === -49.8 || value === -16.4){
+                                return value;
+                            } else if (value === 17){
+                                return 16.4;
+                            }else if (value === 50.4){
+                                return 49.8;
+                            } else if (value === 83.8){
+                                return 83.2;
+                            } else if (value === 117.2){
+                                return 116.6;
+                            }
                             return '';
-                        }
+                        },
                     }
                 }]
             }
@@ -98,11 +114,12 @@ function updateChart() {
 
 
     for (let x = -3/2 * 1e2; x <=3/2 * 1e2 ; x += 0.1  ) {
-        labels.push(x.toFixed(2));
+        // x = +x.toFixed(10),
+        labels.push(+x.toFixed(2));
         intensityFunction(x);
     }
 
-    if(d > b) {
+    if(d > b || N === 1) {
         Multi.data.labels = labels;
         Multi.data.datasets[0].data = intensities;
 

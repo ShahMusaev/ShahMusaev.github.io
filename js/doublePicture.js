@@ -1,12 +1,11 @@
 function drawDoubleInterfPicture(wavelength1, wavelength2, d, b, N,  L) {
 
   function rgbMix(color1, color2) {
-    let r = (color1.red + color2.red) / 2;
-    let g = (color1.green + color2.green) / 2;
-    let b = (color1.blue + color2.blue) / 2;
-    let a = color1.alpha;
+    let r = (color1.r + color2.r) / 2;
+    let g = (color1.g + color2.g) / 2;
+    let b = (color1.b + color2.b) / 2;
 
-    return new RGBAColor(r, g, b, a);
+    return new RGBColor(r, g, b);
   }
 
   function intensityFunction(x, length) {
@@ -47,24 +46,35 @@ function drawDoubleInterfPicture(wavelength1, wavelength2, d, b, N,  L) {
   labels.forEach(function(x, index) {
     const yCoord = index * yStep;
     const alpha1 = intensities1[index] / Max1;
-    const alpha2 = intensities2[index] / Max2;
+    const alpha2 = intensities2[index] / Max1;
+
     let color1 = Math.nmToRGB2(wavelength1);
-
-
     color1 = rgbaFromRGB(color1);
     color1.a = alpha1;
 
     let color2 = Math.nmToRGB(wavelength2);
-
-
     color2 = rgbaFromRGB(color2);
     color2.a = alpha2;
 
-    // let color = rgbMix(color1, color2, alpha(x, wavelength1), alpha(x, wavelength2));
-    // ctx.strokeStyle = 'rgb(' + color.r + ', ' + color.g + ', ' + color.b + ')';
+    color1 = convertRGBAtoRGB(color1);
+    color2 = convertRGBAtoRGB(color2);
 
-    let color = blendTwoColors(color2, color1);
-    ctx.strokeStyle = 'rgba(' + color.r + ', ' + color.g + ', ' + color.b + ', ' + color.a + ')';
+    // let color1 = Math.nmToRGB2(wavelength1);
+    // color1.r = color1.r * intensityFunction(x, wavelength1) / Max1 ;
+    // color1.g = color1.g * intensityFunction(x, wavelength1) / Max1 ;
+    // color1.b = color1.b * intensityFunction(x, wavelength1) / Max1;
+    //
+    // let color2 = Math.nmToRGB(wavelength2);
+    // color2.r = color2.r * intensityFunction(x, wavelength2) / Max2;
+    // color2.g = color2.g * intensityFunction(x, wavelength2) / Max2;
+    // color2.b = color2.b * intensityFunction(x, wavelength2) / Max2;
+
+    let color = rgbMix(color1, color2, intensityFunction(x, wavelength1), intensityFunction(x, wavelength2));
+    ctx.strokeStyle = 'rgb(' + color.r + ', ' + color.g + ', ' + color.b + ')';
+
+
+    // let color = blendTwoColors(color2, color1);
+    // ctx.strokeStyle = 'rgba(' + color.r + ', ' + color.g + ', ' + color.b + ', ' + color.a + ')';
     ctx.beginPath();
     ctx.moveTo(yCoord, 0);
     ctx.lineTo(yCoord, width);
