@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61758e43-ee69-4a1b-8656-6c1eba71cfe8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Double.html" beforeDir="false" afterPath="$PROJECT_DIR$/Double.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mono.html" beforeDir="false" afterPath="$PROJECT_DIR$/Mono.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multi.html" beforeDir="false" afterPath="$PROJECT_DIR$/Multi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -205,12 +202,12 @@
       <option name="presentableId" value="Default" />
       <updated>1560167428258</updated>
       <workItem from="1560167433672" duration="616000" />
-      <workItem from="1560200902766" duration="29193000" />
+      <workItem from="1560200902766" duration="29506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29809000" />
+    <option name="totallyTimeSpent" value="30122000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -310,13 +307,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mono.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -337,6 +327,13 @@
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
         </state>
       </provider>
     </entry>
